@@ -1,6 +1,8 @@
 module.exports = function () {
   $.gulp.task("html", function () {
-    return $.gulp.src("./src/*.html")
+    return $.gulp.src("./src/pages/**/*.html",{
+      base: 'src'
+    })
       .pipe($.gp.posthtml([
         $.posthtmlInclude()
       ]))

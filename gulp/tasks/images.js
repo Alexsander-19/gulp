@@ -1,6 +1,8 @@
 module.exports = function () {
   $.gulp.task('images', function () {
-    return $.gulp.src('./src/img/**/*.{png,jpg}')
+    return $.gulp.src('./src/assets/images/**/*.{png,jpg}',{
+      base: 'src'
+    })
         .pipe($.gp.imagemin([
           $.gp.imagemin.mozjpeg({progressive: true}),
           $.imageminJpegRecompress({
@@ -12,6 +14,6 @@ module.exports = function () {
           $.gp.imagemin.optipng({optimizationLevel: 3}),
           $.pngquant({quality: [0.6, 0.7], speed: 5}),
         ]))
-        .pipe($.gulp.dest('./build/img'));
+        .pipe($.gulp.dest('./build/'));
   });
 };

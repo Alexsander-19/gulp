@@ -2,15 +2,15 @@ const jsfiles = $.path.js;
 
 module.exports = function () {
   $.gulp.task('scripts', function() {
-    return $.gulp.src(jsfiles)
+    return $.gulp.src('./src/pages/**/*.js',{
+      base: 'src'
+    })
         .pipe($.gp.plumber())
         .pipe($.gp.sourcemaps.init())
         .pipe($.gp.babel({presets: ["@babel/preset-env"]}))
-        .pipe($.gp.concat('index.js'))
         .pipe($.gp.uglify())
-        .pipe($.gp.rename('index.min.js'))
         .pipe($.gp.sourcemaps.write(''))
-        .pipe($.gulp.dest('build/js'))
+        .pipe($.gulp.dest('./build/'))
         .pipe($.browserSync.stream());
   });
 };
